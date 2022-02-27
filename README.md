@@ -1,24 +1,3 @@
 # vue-study2.0
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<img width="1437" alt="image" src="https://user-images.githubusercontent.com/38034518/155883071-3e399cff-1e1b-4a32-80f8-d9357c6bca77.png">
