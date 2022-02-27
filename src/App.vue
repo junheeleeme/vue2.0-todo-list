@@ -6,15 +6,15 @@
         <span class="topBar-btn"/>
       </span>
       <div class="todoInput-wrap">
-        <input type="text" id='todoInput' @input="changeInput" placeholder="Todos" @keyup.enter="add">
-        <button type="submit" id="todoAdd-btn">+</button>
+        <input type="text" id='todoInput' v-model="check" @input="changeInput" placeholder="Todos" @keyup.enter="todoAdd">
+        <button type="submit" id="todoAdd-btn" @click="todoAdd_click">+</button>
       </div>
       
       <ul class="todo-list">
         <li v-for="(todo, idx) in todos" :key="todo.todo + idx" :class="todo.compl === true ? 'done' : 'yet'"
           @click.stop="doneToggle($event)">
           {{ todo.todo }}
-          <button class="todo-remove-btn" :data-id="todo.id" @click.stop="remove($event)" />
+          <button class="todo-remove-btn" :data-id="todo.id" @click.stop="todoRemove" />
         </li>
       </ul>
     </div>
@@ -27,7 +27,9 @@
 export default{
   data(){
     return {
+      name: 'todoList',
       todoInput : '',
+      check : '',
       todos : [
         {
           id: 1,
@@ -42,15 +44,23 @@ export default{
     changeInput(e) {
       this.todoInput = e.target.value;
     },
-    add(e){
+    todoAdd(e){
       if(e.target.value !== ''){
         const _id = this.todos.length+1;
         this.todos.push({ id: _id, todo : this.todoInput });
         this.todoInput = '';
         e.target.value = '';
+        this.check = '';
       }
     },
-    remove(e){
+    todoAdd_click(){
+      if(this.todoInput !== ''){
+        const _id = this.todos.length+1;
+        this.todos.push({ id: _id, todo : this.todoInput });
+        this.check = '';
+      }
+    },
+    todoRemove(e){
       const id = Number(e.target.dataset.id);
       this.todos.some((todo, index) => { 
         if(todo.id === id){
